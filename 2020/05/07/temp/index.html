@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="样本分析分析概况本次分析的样本为APT组织摩诃草（APT-C-09，又称HangOver、VICEROY TIGER、The Dropping Elephant、Patchwork）借新冠病毒事件向我国投递的包含恶意宏代码的xlsm文档。该文档的宏代码执行后，会下载一个sct脚本，脚本借由scrobj.dll执行后会下载最终的恶意程序msupdate.exe。msupdate.exe会窃取主机数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="temp">
+<meta property="og:url" content="http://yoursite.com/2020/05/07/temp/index.html">
+<meta property="og:site_name" content="人间客">
+<meta property="og:description" content="样本分析分析概况本次分析的样本为APT组织摩诃草（APT-C-09，又称HangOver、VICEROY TIGER、The Dropping Elephant、Patchwork）借新冠病毒事件向我国投递的包含恶意宏代码的xlsm文档。该文档的宏代码执行后，会下载一个sct脚本，脚本借由scrobj.dll执行后会下载最终的恶意程序msupdate.exe。msupdate.exe会窃取主机数据">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506160908265.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506163045797.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506162609381.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506164911109.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506172142119.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506172313963.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506171032532.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506174423187.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506174449881.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506180917527.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506181100920.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506180113721.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200506180225833.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5C%E6%B5%81%E9%87%8F12.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506175649489.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5C%E6%B5%81%E9%87%8F2.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506175816739.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5C%E6%B5%81%E9%87%8F1.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506181818541.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506182855766.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506182953176.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506183032405.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506183848279.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506184408214.png">
+<meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506184624146.png">
+<meta property="article:published_time" content="2020-05-07T05:06:39.943Z">
+<meta property="article:modified_time" content="2020-05-07T05:06:22.394Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506160908265.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/07/temp/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>temp | 人间客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">人间客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/07/temp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="人间客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          temp
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 13:06:39 / 修改时间：13:06:22" itemprop="dateCreated datePublished" datetime="2020-05-07T13:06:39+08:00">2020-05-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="样本分析"><a href="#样本分析" class="headerlink" title="样本分析"></a>样本分析</h1><h2 id="分析概况"><a href="#分析概况" class="headerlink" title="分析概况"></a>分析概况</h2><p>本次分析的样本为APT组织摩诃草（APT-C-09，又称HangOver、VICEROY TIGER、The Dropping Elephant、Patchwork）借新冠病毒事件向我国投递的包含恶意宏代码的xlsm文档。该文档的宏代码执行后，会下载一个sct脚本，脚本借由scrobj.dll执行后会下载最终的恶意程序msupdate.exe。msupdate.exe会窃取主机数据上传，并且会下载其他的恶意文件到主机执行。</p>
+<h2 id="武汉旅行信息收集申请表-xlsm"><a href="#武汉旅行信息收集申请表-xlsm" class="headerlink" title="武汉旅行信息收集申请表.xlsm"></a>武汉旅行信息收集申请表.xlsm</h2><p>该样本包含恶意宏代码，主要功能为通过宏代码下载并执行sct脚本。因为样本处于一个受保护的状态，所以无法直接查看宏代码，需要使用工具提取。</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506160908265.png" alt="image-20200506160908265"></p>
+<center>图1 受保护状态</center>
+
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506163045797.png" alt="image-20200506163045797"></p>
+<center>图2 宏代码</center>
+
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506162609381.png" alt="image-20200506162609381"></p>
+<center>图3 x100 处数据</center>
+
+<h2 id="window-sct"><a href="#window-sct" class="headerlink" title="window.sct"></a>window.sct</h2><p>​    该样本为JavaScript脚本，主要更能为从服务器下载window.jpeg到Startup（自启动）目录，并重命名为temp.exe。</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506164911109.png" alt="image-20200506164911109"></p>
+<center>图4 window.sct脚本</center>
+
+<h2 id="temp-exe"><a href="#temp-exe" class="headerlink" title="temp.exe"></a>temp.exe</h2><p>​    该样本为最终释放的样本，所有的操作都在该样本中完成。该样本体积过大，其中夹杂了大量的垃圾代码来干扰分析。该样本主要功能如下：</p>
+<ul>
+<li>自我复制到其他两个文件夹并重命名为Update.exe，分别是C:\Users\用户名\AppData\Roaming和C:\Microsoft。</li>
+<li>创建计划任务，在用户登录时运行。</li>
+<li>获取本机数据进行上传。</li>
+<li>从服务器下载数据。</li>
+<li>创建反向shell，使控制端主动可以主动连接到被控主机。</li>
+</ul>
+<p>​    该样本总体框架如下：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506172142119.png" alt="image-20200506172142119"></p>
+<center>图5 样本总体框架</center>
+
+<p>自我复制到其他两个文件夹，都是调用的此函数：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506172313963.png" alt="image-20200506172313963"></p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506171032532.png" alt="image-20200506171032532"></p>
+<center>图6 自我复制到其他文件夹</center>
+
+<p>创建计划任务Microsoft Update，在用户登录时触发：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506174423187.png" alt="image-20200506174423187"></p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506174449881.png" alt="image-20200506174449881"></p>
+<center>图7 创建计划任务</center>
+
+<p>创建uuid.txt:</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506180917527.png" alt="image-20200506180917527"></p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506181100920.png" alt="image-20200506181100920"></p>
+<p>连接服务器185.193.38.24，以UUID为唯一标识符，服务器返回json格式的数据，根据返回的status数据判断接下来的操作，完整链接如下：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506180113721.png" alt="image-20200506180113721"></p>
+<p>与<a href="https://185.193.38.24/cnc/tasks/result建立连接：" target="_blank" rel="noopener">https://185.193.38.24/cnc/tasks/result建立连接：</a></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200506180225833.png" alt="image-20200506180225833"></p>
+<p>解密后的数据包：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5C%E6%B5%81%E9%87%8F12.png" alt=""></p>
+<p>与<a href="https://185.193.38.24/cnc/tasks/result建立连接：" target="_blank" rel="noopener">https://185.193.38.24/cnc/tasks/result建立连接：</a></p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506175649489.png" alt="image-20200506175649489"></p>
+<p>解密后的数据包：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5C%E6%B5%81%E9%87%8F2.png" alt=""></p>
+<p>与<a href="https://185.193.38.24/cnc/tasks/request建立连接：" target="_blank" rel="noopener">https://185.193.38.24/cnc/tasks/request建立连接：</a></p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506175816739.png" alt="image-20200506175816739"></p>
+<p>解密后的数据包：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5C%E6%B5%81%E9%87%8F1.png" alt=""></p>
+<p>通过http下载文件：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506181818541.png" alt="image-20200506181818541"></p>
+<p>通过ftp上传文件：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506182855766.png" alt="image-20200506182855766"></p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506182953176.png" alt="image-20200506182953176"></p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506183032405.png" alt="image-20200506183032405"></p>
+<p>创建控制台反向Shell：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506183848279.png" alt="image-20200506183848279"></p>
+<p>上传屏幕截图：</p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506184408214.png" alt="image-20200506184408214"></p>
+<p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%5Cimage-20200506184624146.png" alt="image-20200506184624146"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" rel="prev" title="武汉旅行信息收集申请表分析报告">
+      <i class="fa fa-chevron-left"></i> 武汉旅行信息收集申请表分析报告
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/07/temp%20-%20%E5%89%AF%E6%9C%AC/" rel="next" title="temp - 副本">
+      temp - 副本 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#样本分析"><span class="nav-number">1.</span> <span class="nav-text">样本分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分析概况"><span class="nav-number">1.1.</span> <span class="nav-text">分析概况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#武汉旅行信息收集申请表-xlsm"><span class="nav-number">1.2.</span> <span class="nav-text">武汉旅行信息收集申请表.xlsm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window-sct"><span class="nav-number">1.3.</span> <span class="nav-text">window.sct</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#temp-exe"><span class="nav-number">1.4.</span> <span class="nav-text">temp.exe</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
