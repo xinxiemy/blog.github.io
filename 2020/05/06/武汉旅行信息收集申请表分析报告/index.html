@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="样本分析分析概况​        本次分析的样本为APT组织摩诃草（APT-C-09，又称HangOver、VICEROY TIGER、The Dropping Elephant、Patchwork）借新冠病毒事件向我国投递的包含恶意宏代码的xlsm文档。该文档的宏代码执行后，会下载一个sct脚本，脚本借由scrobj.dll执行后会下载最终的恶意程序msupdate.exe。msupdate.e">
+  <meta name="description" content="样本分析分析概况本次分析的样本为APT组织摩诃草（APT-C-09，又称HangOver、VICEROY TIGER、The Dropping Elephant、Patchwork）借新冠病毒事件向我国投递的包含恶意宏代码的xlsm文档。该文档的宏代码执行后，会下载一个sct脚本，脚本借由scrobj.dll执行后会下载最终的恶意程序msupdate.exe。msupdate.exe会窃取主机数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="武汉旅行信息收集申请表分析报告">
 <meta property="og:url" content="http://yoursite.com/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/index.html">
 <meta property="og:site_name" content="人间客">
-<meta property="og:description" content="样本分析分析概况​        本次分析的样本为APT组织摩诃草（APT-C-09，又称HangOver、VICEROY TIGER、The Dropping Elephant、Patchwork）借新冠病毒事件向我国投递的包含恶意宏代码的xlsm文档。该文档的宏代码执行后，会下载一个sct脚本，脚本借由scrobj.dll执行后会下载最终的恶意程序msupdate.exe。msupdate.e">
+<meta property="og:description" content="样本分析分析概况本次分析的样本为APT组织摩诃草（APT-C-09，又称HangOver、VICEROY TIGER、The Dropping Elephant、Patchwork）借新冠病毒事件向我国投递的包含恶意宏代码的xlsm文档。该文档的宏代码执行后，会下载一个sct脚本，脚本借由scrobj.dll执行后会下载最终的恶意程序msupdate.exe。msupdate.exe会窃取主机数据">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506160908265.png">
 <meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506163045797.png">
@@ -52,8 +52,8 @@
 <meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506183848279.png">
 <meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506184408214.png">
 <meta property="og:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506184624146.png">
-<meta property="article:published_time" content="2020-05-06T03:30:39.000Z">
-<meta property="article:modified_time" content="2020-05-07T03:44:32.874Z">
+<meta property="article:published_time" content="2020-05-06T03:46:29.000Z">
+<meta property="article:modified_time" content="2020-05-07T03:47:40.954Z">
 <meta property="article:tag" content="APT-C-09&#x2F;摩诃草">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506160908265.png">
@@ -200,14 +200,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-06 11:30:39" itemprop="dateCreated datePublished" datetime="2020-05-06T11:30:39+08:00">2020-05-06</time>
+              <time title="创建时间：2020-05-06 11:46:29" itemprop="dateCreated datePublished" datetime="2020-05-06T11:46:29+08:00">2020-05-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-07 11:44:32" itemprop="dateModified" datetime="2020-05-07T11:44:32+08:00">2020-05-07</time>
+                <time title="修改时间：2020-05-07 11:47:40" itemprop="dateModified" datetime="2020-05-07T11:47:40+08:00">2020-05-07</time>
               </span>
 
           
@@ -221,8 +221,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="样本分析"><a href="#样本分析" class="headerlink" title="样本分析"></a>样本分析</h1><h2 id="分析概况"><a href="#分析概况" class="headerlink" title="分析概况"></a>分析概况</h2><p>​        本次分析的样本为APT组织摩诃草（APT-C-09，又称HangOver、VICEROY TIGER、The Dropping Elephant、Patchwork）借新冠病毒事件向我国投递的包含恶意宏代码的xlsm文档。该文档的宏代码执行后，会下载一个sct脚本，脚本借由scrobj.dll执行后会下载最终的恶意程序msupdate.exe。msupdate.exe会窃取主机数据上传，并且会下载其他的恶意文件到主机执行。</p>
-<h2 id="武汉旅行信息收集申请表-xlsm"><a href="#武汉旅行信息收集申请表-xlsm" class="headerlink" title="武汉旅行信息收集申请表.xlsm"></a>武汉旅行信息收集申请表.xlsm</h2><p>​        该样本包含恶意宏代码，主要功能为通过宏代码下载并执行sct脚本。因为样本处于一个受保护的状态，所以无法直接查看宏代码，需要使用工具提取。</p>
+        <h1 id="样本分析"><a href="#样本分析" class="headerlink" title="样本分析"></a>样本分析</h1><h2 id="分析概况"><a href="#分析概况" class="headerlink" title="分析概况"></a>分析概况</h2><p>本次分析的样本为APT组织摩诃草（APT-C-09，又称HangOver、VICEROY TIGER、The Dropping Elephant、Patchwork）借新冠病毒事件向我国投递的包含恶意宏代码的xlsm文档。该文档的宏代码执行后，会下载一个sct脚本，脚本借由scrobj.dll执行后会下载最终的恶意程序msupdate.exe。msupdate.exe会窃取主机数据上传，并且会下载其他的恶意文件到主机执行。</p>
+<h2 id="武汉旅行信息收集申请表-xlsm"><a href="#武汉旅行信息收集申请表-xlsm" class="headerlink" title="武汉旅行信息收集申请表.xlsm"></a>武汉旅行信息收集申请表.xlsm</h2><p>该样本包含恶意宏代码，主要功能为通过宏代码下载并执行sct脚本。因为样本处于一个受保护的状态，所以无法直接查看宏代码，需要使用工具提取。</p>
 <p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506160908265.png" alt="image-20200506160908265"></p>
 <center>图1 受保护状态</center>
 
@@ -232,11 +232,11 @@
 <p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506162609381.png" alt="image-20200506162609381"></p>
 <center>图3 x100 处数据</center>
 
-<h2 id="window-sct"><a href="#window-sct" class="headerlink" title="window.sct"></a>window.sct</h2><p>​        该样本为JavaScript脚本，主要功能为从服务器下载window.jpeg到Startup（自启动）目录，并重命名为temp.exe。</p>
+<h2 id="window-sct"><a href="#window-sct" class="headerlink" title="window.sct"></a>window.sct</h2><p>该样本为JavaScript脚本，主要功能为从服务器下载window.jpeg到Startup（自启动）目录，并重命名为temp.exe。</p>
 <p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506164911109.png" alt="image-20200506164911109"></p>
 <center>图4 window.sct脚本</center>
 
-<h2 id="temp-exe"><a href="#temp-exe" class="headerlink" title="temp.exe"></a>temp.exe</h2><p>​        该样本为最终释放的恶意程序，所有的操作都在该样本中完成。该样本体积过大，其中夹杂了大量的垃圾代码来干扰分析。该样本主要功能如下：</p>
+<h2 id="temp-exe"><a href="#temp-exe" class="headerlink" title="temp.exe"></a>temp.exe</h2><p>该样本为最终释放的恶意程序，所有的操作都在该样本中完成。该样本体积过大，其中夹杂了大量的垃圾代码来干扰分析。该样本主要功能如下：</p>
 <ul>
 <li>自我复制到其他两个文件夹并重命名为msupdate.exe，分别是C:\Users\用户名\AppData\Roaming和C:\Microsoft。</li>
 <li>创建计划任务，在用户登录时运行。</li>
@@ -272,6 +272,7 @@
 <p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506175649489.png" alt="image-20200506175649489"></p>
 <p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/image-20200506175816739.png" alt="image-20200506175816739"></p>
 <center>图10 向服务器发起请求<?
+
 
 <p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/%E6%B5%81%E9%87%8F12.png" alt="img"></p>
 <p><img src="https://thenday.top/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/%E6%B5%81%E9%87%8F2.png" alt="img"></p>
