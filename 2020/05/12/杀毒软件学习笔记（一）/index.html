@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="杀毒软件学习笔记主要功能 杀毒（查杀病毒） 防毒（阻止病毒执行） 升级（更新模块或病毒库） 自我保护（防止被病毒反杀） 黑&#x2F;白名单 边缘软件，不属于木马&#x2F;病毒，不会对系统造车危害但会对使用者的感受有不好的影响 比如弹广告的、P2P做种的后台程序或组件   其他功能（照顾用户感受） 设置 让用户根据自己的习惯去设置杀毒软件   界面 功能相同的情况下，用户偏好更好的UI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杀毒软件学习笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2020/05/12/%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="人间客">
+<meta property="og:description" content="杀毒软件学习笔记主要功能 杀毒（查杀病毒） 防毒（阻止病毒执行） 升级（更新模块或病毒库） 自我保护（防止被病毒反杀） 黑&#x2F;白名单 边缘软件，不属于木马&#x2F;病毒，不会对系统造车危害但会对使用者的感受有不好的影响 比如弹广告的、P2P做种的后台程序或组件   其他功能（照顾用户感受） 设置 让用户根据自己的习惯去设置杀毒软件   界面 功能相同的情况下，用户偏好更好的UI">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-12T07:54:42.000Z">
+<meta property="article:modified_time" content="2020-05-12T07:56:19.521Z">
+<meta property="article:author" content="人间客">
+<meta property="article:tag" content="杀软">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/12/%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>杀毒软件学习笔记（一） | 人间客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">人间客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="人间客">
+      <meta itemprop="description" content="终身学习，终身成长">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="人间客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          杀毒软件学习笔记（一）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-12 15:54:42 / 修改时间：15:56:19" itemprop="dateCreated datePublished" datetime="2020-05-12T15:54:42+08:00">2020-05-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="杀毒软件学习笔记"><a href="#杀毒软件学习笔记" class="headerlink" title="杀毒软件学习笔记"></a>杀毒软件学习笔记</h1><h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><ol>
+<li>杀毒（查杀病毒）</li>
+<li>防毒（阻止病毒执行）</li>
+<li>升级（更新模块或病毒库）</li>
+<li>自我保护（防止被病毒反杀）</li>
+<li>黑/白名单<ul>
+<li>边缘软件，不属于木马/病毒，不会对系统造车危害但会对使用者的感受有不好的影响</li>
+<li>比如弹广告的、P2P做种的后台程序或组件</li>
+</ul>
+</li>
+<li>其他功能（照顾用户感受）<ol>
+<li>设置<ul>
+<li>让用户根据自己的习惯去设置杀毒软件</li>
+</ul>
+</li>
+<li>界面<ul>
+<li>功能相同的情况下，用户偏好更好的UI</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<a id="more"></a>
+
+<h2 id="杀毒引擎"><a href="#杀毒引擎" class="headerlink" title="杀毒引擎"></a>杀毒引擎</h2><h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p>杀毒引擎是检测和查杀病毒的方式。</p>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ol>
+<li>扫描一个文件，获取特征码</li>
+<li>连接病毒库，根据特征码判断是否为恶意程序<ul>
+<li>确认是病毒<ul>
+<li>非感染型<ol>
+<li>查杀</li>
+<li>清理相关启动项信息及文件</li>
+</ol>
+</li>
+<li>感染型（比非感染型多出一个动作）<ol>
+<li>查杀</li>
+<li>清理相关启动项信息及文件</li>
+<li>对被感染的文件进行修复</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>正常程序<ol>
+<li>放行</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="杀毒"><a href="#杀毒" class="headerlink" title="杀毒"></a>杀毒</h3><h4 id="设计方案（三按钮式杀毒）"><a href="#设计方案（三按钮式杀毒）" class="headerlink" title="设计方案（三按钮式杀毒）"></a>设计方案（三按钮式杀毒）</h4><ol>
+<li>全盘扫描<ul>
+<li>扫描所有磁盘文件<ul>
+<li>相关API</li>
+<li>FindFirstFile</li>
+<li>FindNextFile</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>快速扫描<ul>
+<li>扫描内存中加载的模块<ol>
+<li>遍历进程<ul>
+<li>相关API</li>
+<li>CreateToolhelp32Snapshot</li>
+<li>Process32First</li>
+<li>Process32Next</li>
+</ul>
+</li>
+<li>遍历每个进程的模块<ul>
+<li>Module32First</li>
+<li>Module32Next</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>自定义扫描<ul>
+<li>扫描选中的目录或文件<ul>
+<li>相关API</li>
+<li>SetCurrentDirectory</li>
+<li>FindFirstFile</li>
+<li>FindNextFile</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="病毒检测实现"><a href="#病毒检测实现" class="headerlink" title="病毒检测实现"></a>病毒检测实现</h4><p>遍历文件后需要对文件进行监测，有如下方案：</p>
+<ol>
+<li>特征码检测<ul>
+<li>对文件进行扫描后，生成特征码。将特征码与生成的特征码格式为节大小+节的哈希值。</li>
+</ul>
+</li>
+<li>启发式扫描<ul>
+<li>一种与特征码匹配完全不同的技术，可以理解为行为分析技术。通过对样本的行为进行分析、反汇编代码、判断导入表中存在的函数组合等来进行检测。</li>
+</ul>
+</li>
+</ol>
+<h3 id="防毒"><a href="#防毒" class="headerlink" title="防毒"></a>防毒</h3><p>在进程启动前进行拦截，通过对其扫描检测判断是否是病毒。这也是很多软件宣传的主动防御功能。实现此功能需要使用API HooK技术。</p>
+<p>底层方式：</p>
+<ul>
+<li>修改SSDT表</li>
+</ul>
+<p>用户层：</p>
+<ul>
+<li>全局DLL注入</li>
+</ul>
+<p>除此之外，还会在程序启动后对系统的一些敏感操作进行监管，比如注册表读写、文件读写等。</p>
+<h4 id="拦截进程启动实现"><a href="#拦截进程启动实现" class="headerlink" title="拦截进程启动实现"></a>拦截进程启动实现</h4><p>系统在启动时会调用CreateProcess，我们需要Hooke这个函数。可以对所有系统进程进行注入，Hook这个函数，这样无论那个程序启动都会被拦截到。拦截到之后将被启动的程序信息转发给杀毒软件，由杀毒软件来判断安全性。</p>
+<h3 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h3><p>杀毒软件需要及时更新组件或病毒库来对对电脑进行保护。完成这个操作需要用到服务器，将更新后的组件或病毒库存放到服务器的指定位置。杀毒软件访问该位置，读取文件的版本信息与主机进行判断。如果服务器上的文件版本号更高，则下载该文件并替换。</p>
+<h3 id="自我保护"><a href="#自我保护" class="headerlink" title="自我保护"></a>自我保护</h3><p>实现此功能需要使用API Hook技术，与防毒功能相似，该功能Hook的是OpenProcess函数。如果一个进程要退出，那么要使用TerminateProcess函数。但是使用该函数则需要传递进程句柄，而在不同进程中进程句柄是不能传递的。但是可以使用OpenProcess函数来获取进程句柄并把句柄传递给TerminateProcess函数。所以我们Hook此函数后可以判断被打开的进程是否是杀毒软件，如果是则终止该进程。</p>
+<h3 id="黑-白名单"><a href="#黑-白名单" class="headerlink" title="黑/白名单"></a>黑/白名单</h3><p>此功能作为病毒库的辅助，主要用于病毒防护、减少误报、阻止非病毒类的边缘灰色文件。</p>
+<p>在查杀病毒时并不使用该名单。在进程启动前，杀毒引擎对其扫描后，再引用此名单进行扫描，可以进一步提升防护效果，增强整体软件的防护功能。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9D%80%E8%BD%AF/" rel="tag"># 杀软</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" rel="prev" title="武汉旅行信息收集申请表分析报告">
+      <i class="fa fa-chevron-left"></i> 武汉旅行信息收集申请表分析报告
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#杀毒软件学习笔记"><span class="nav-number">1.</span> <span class="nav-text">杀毒软件学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要功能"><span class="nav-number">1.1.</span> <span class="nav-text">主要功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杀毒引擎"><span class="nav-number">1.2.</span> <span class="nav-text">杀毒引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#是什么"><span class="nav-number">1.2.1.</span> <span class="nav-text">是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作流程"><span class="nav-number">1.2.2.</span> <span class="nav-text">工作流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现"><span class="nav-number">1.3.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#杀毒"><span class="nav-number">1.3.1.</span> <span class="nav-text">杀毒</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设计方案（三按钮式杀毒）"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">设计方案（三按钮式杀毒）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#病毒检测实现"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">病毒检测实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防毒"><span class="nav-number">1.3.2.</span> <span class="nav-text">防毒</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拦截进程启动实现"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">拦截进程启动实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级"><span class="nav-number">1.3.3.</span> <span class="nav-text">升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自我保护"><span class="nav-number">1.3.4.</span> <span class="nav-text">自我保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#黑-白名单"><span class="nav-number">1.3.5.</span> <span class="nav-text">黑&#x2F;白名单</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">人间客</p>
+  <div class="site-description" itemprop="description">终身学习，终身成长</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">人间客</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
