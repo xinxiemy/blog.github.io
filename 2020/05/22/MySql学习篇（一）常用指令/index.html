@@ -20,30 +20,33 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="终身学习，终身成长">
-<meta property="og:type" content="website">
-<meta property="og:title" content="人间客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql学习篇（一）常用指令">
+<meta property="og:url" content="http://yoursite.com/2020/05/22/MySql%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="人间客">
-<meta property="og:description" content="终身学习，终身成长">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-22T10:17:02.000Z">
+<meta property="article:modified_time" content="2020-05-23T08:58:00.236Z">
 <meta property="article:author" content="人间客">
+<meta property="article:tag" content="MySql">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/05/22/MySql%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>人间客</title>
+  <title>MySql学习篇（一）常用指令 | 人间客</title>
   
 
 
@@ -141,11 +144,11 @@
         <div class="content-wrap">
           
 
-          <div class="content index">
+          <div class="content post">
             
 
   <div class="posts-expand">
-        
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -161,10 +164,9 @@
       <meta itemprop="name" content="人间客">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/22/MySql%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">MySql学习篇（一）常用指令</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          MySql学习篇（一）常用指令
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -203,7 +205,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">#登录数据库</span><br><span class="line">mysql -hlocalhost -uroot -p;</span><br><span class="line">#修改密码</span><br><span class="line">mysqladmin -uroot -pold password new;</span><br><span class="line"></span><br><span class="line">#显示数据库</span><br><span class="line">show databases;</span><br><span class="line">#显示数据表</span><br><span class="line">show tables;</span><br><span class="line">#选择数据库</span><br><span class="line">use examples;</span><br><span class="line">#创建数据库并设置编码utf-8 多语言</span><br><span class="line">create database &#96;examples&#96; default character set utf8 collate utf8_general_ci;</span><br><span class="line">#删除数据库</span><br><span class="line">drop database examples;</span><br><span class="line">#创建表</span><br><span class="line">create table test(</span><br><span class="line">    id int(10) unsigned zerofill not null auto_increment,</span><br><span class="line">    email varchar(40) not null,</span><br><span class="line">    ip varchar(15) not null,</span><br><span class="line">    state int(10) not null default &#39;-1&#39;,</span><br><span class="line">primary key (id)</span><br><span class="line">)engine&#x3D;InnoDB;</span><br><span class="line">#显示表结构</span><br><span class="line">describe </span><br><span class="line">#删除表</span><br><span class="line">drop table test；</span><br><span class="line">#重命名表</span><br><span class="line">alter table test_old rename test_new;</span><br><span class="line">#添加列</span><br><span class="line">alter table test add cn int(4) not null;</span><br><span class="line">#修改列</span><br><span class="line">alter table test change id id1 varchar(10) not null;</span><br><span class="line">#删除列 </span><br><span class="line">alter table test drop cn;</span><br><span class="line">#创建索引</span><br><span class="line">alter table test add index (cn,id);</span><br><span class="line">#删除索引</span><br><span class="line">alter table test drop index cn</span><br><span class="line">#插入数据</span><br><span class="line">insert into test (id,email,ip,state) values(2,&#39;qq@qq.com&#39;,&#39;127.0.0.1&#39;,&#39;0&#39;);</span><br><span class="line">#删除数据 </span><br><span class="line">delete from test where id &#x3D; 1;</span><br><span class="line">#修改数据</span><br><span class="line">update test set id&#x3D;&#39;1&#39;,email&#x3D;&#39;q@qq.com&#39; where id&#x3D;1;</span><br><span class="line">#查数据</span><br><span class="line">select * from test;  #取所有数据</span><br><span class="line">select * from test limit 0,2;  #取前两条数据 </span><br><span class="line">select * from test email like &#39;%qq%&#39; #查含有qq字符 _表示一个 %表示多个</span><br><span class="line">select * from test order by id asc;#降序desc</span><br><span class="line">select * from test id not in(&#39;2&#39;,&#39;3&#39;);#id不含2,3或者去掉not表示含有</span><br><span class="line">select * from test timer between 1 and 10;#数据在1,10之间</span><br><span class="line"></span><br><span class="line">#---------------------------表连接知识------------------------------</span><br><span class="line">#等值连接又叫内链接 inner join 只返回两个表中连接字段相等的行</span><br><span class="line">select * from A inner join B on A.id &#x3D; B.id; #写法1</span><br><span class="line">select * from A,B where A.id &#x3D; B.id; #写法2</span><br><span class="line">select a.id,a.title from A a inner join B b on a.id&#x3D;b.id and a.id&#x3D;1;#写法3 表的临时名称</span><br><span class="line">select a.id as ID,a.title as 标题 from A inner join B on A.id&#x3D;B.id;#添加as字句</span><br><span class="line"></span><br><span class="line">#左连接又叫外连接 left join 返回左表中所有记录和右表中连接字段相等的记录</span><br><span class="line">select * from A left join B on A.id &#x3D; B.id;</span><br><span class="line"></span><br><span class="line">select * from A left join (B,C,D) on (B.i1&#x3D;A.i1 and C.i2&#x3D;A.i2 and D.i3 &#x3D; A.i3);#复杂连接</span><br><span class="line"></span><br><span class="line">#右连接又叫外连接 right join 返回右表中所有记录和左表中连接字段相等的记录</span><br><span class="line">select * from A right join B on A.id &#x3D; B.id;</span><br><span class="line"></span><br><span class="line">#完整外部链接 full join 返回左右表中所有数据</span><br><span class="line">select * from A full join B on A.id &#x3D; B.id;</span><br><span class="line"></span><br><span class="line">#交叉连接 没有where字句 返回卡迪尔积</span><br><span class="line">select * from A cross join B;</span><br><span class="line">-------------------------表连接结束------------------------------------------------------------</span><br><span class="line">-----------------索引创建------------------------------------------------</span><br><span class="line">show index from A #查看索引</span><br><span class="line">alter table A add primary key(id) #主键索引</span><br><span class="line">alter table A add unique(name) #唯一索引</span><br><span class="line">alter table A add index name(name) #普通索引</span><br><span class="line">alter table A add fulltext(name) #全文索引</span><br><span class="line">alter table A add index name(id,name) #多列索引</span><br><span class="line"></span><br><span class="line">#常用函数</span><br><span class="line">abs(-1)#绝对值</span><br><span class="line">pi()#pi值</span><br><span class="line">sqrt(2)#平方根</span><br><span class="line">mod(-5,3)#取余-2</span><br><span class="line">ceil(10.6)#进位+1 结果11 ceil(10.0)结果10</span><br><span class="line">floor(10.6)#取整 10</span><br><span class="line">round(2.5)#四舍五入到整数 结果3</span><br><span class="line">round(2.5,2)#保留两位小数 结果2.50</span><br><span class="line">truncate(2.5234,3)#取小数后3位不四舍五入 2.523</span><br><span class="line">sign(-2);#符号函数 返回-1 0还是0 正数返回1</span><br><span class="line">pow(2,3),exp(2);#2的3次幂 或e的2次幂</span><br><span class="line">log(2),log10(2);#求对数</span><br><span class="line">radians(180),degrees(0.618);#角度弧度转换</span><br><span class="line">sin(0.5),asin(0.5)#正弦和反正弦 类似cos acos tan atan</span><br><span class="line">length(&#39;hi&#39;)#计算字符长度</span><br><span class="line">concat(&#39;1&#39;,1,&#39;hi&#39;)#合并字符串</span><br><span class="line">insert(&#39;12345&#39;,1,0,&#39;7890&#39;);#从开头第1个字符开始到0个结束，替换成后边字符串，0表示在最前边插入</span><br><span class="line">ucase(&#39;a&#39;),lcase(&#39;A&#39;)#转成大写和小写</span><br><span class="line">left(&#39;abcd&#39;,2),right(&#39;abcd&#39;,2);#返回前两个字符和后两个字符</span><br><span class="line">ltrim(&#39;  0  &#39;),rtrim(&#39; 0 &#39;),trim(&#39;  0  &#39;)#删除空格</span><br><span class="line">replace(&#39;1234567890&#39;,&#39;345678&#39;,&#39;0&#39;);#替换输出12090</span><br><span class="line">substring(&#39;12345&#39;,1,2)#取字符 输出12 1是位置 2是长度</span><br><span class="line">instr(&#39;1234&#39;,&#39;234&#39;);#取得234位置是2</span><br><span class="line">reverse(&#39;1234&#39;);#反序输出4321</span><br><span class="line">current()#返回日期</span><br><span class="line">curtime()#返回时间</span><br><span class="line">now()#返回日期时间</span><br><span class="line">month(now())#当前月份 monthname 英文月份</span><br><span class="line">dayname(now())#星期英文 dayofweek()1是星期天 weekday()1是星期二</span><br><span class="line">week(now())#本年第多少周</span><br><span class="line">dayofyear(now()),dayofmonth(now())#今天是本年第多少天 今天是本月第多少天</span><br><span class="line">year(now()),month(now()),day(now()),hour(now()),minute(now()),second(now())#返回年月日 时分秒</span><br><span class="line">time_to_sec(now()),sec_to_time(3600*8);#转换时间为秒和还原</span><br><span class="line">version()#mysql版本</span><br><span class="line">database()#当前连接的数据库 没有为null</span><br><span class="line">user()#获取用户名</span><br><span class="line">md5(&#39;a&#39;)#加密字符串</span><br><span class="line">ascii(&#39;a&#39;)#ascii值97</span><br><span class="line">bin(100),hex(100),oct(100)#返回二进制 十六进制 八进制</span><br><span class="line">conv(10001,2,8);#各种进制相互转换</span><br><span class="line">rand()#生成0到1之间随机数</span><br><span class="line"></span><br><span class="line">sleep(0.02)#暂停秒数</span><br><span class="line">---------------------------------</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">#登录数据库</span><br><span class="line">mysql -hlocalhost -uroot -p;</span><br><span class="line">#修改密码</span><br><span class="line">mysqladmin -uroot -pold password new;</span><br><span class="line"></span><br><span class="line">#显示数据库</span><br><span class="line">show databases;</span><br><span class="line">#显示数据表</span><br><span class="line">show tables;</span><br><span class="line">#选择数据库</span><br><span class="line">use examples;</span><br><span class="line">#创建数据库并设置编码utf-8 多语言</span><br><span class="line">create database &#96;examples&#96; default character set utf8 collate utf8_general_ci;</span><br><span class="line">#删除数据库</span><br><span class="line">drop database examples;</span><br><span class="line">#创建表</span><br><span class="line">create table test(</span><br><span class="line">    id int(10) unsigned zerofill not null auto_increment,</span><br><span class="line">    email varchar(40) not null,</span><br><span class="line">    ip varchar(15) not null,</span><br><span class="line">    state int(10) not null default &#39;-1&#39;,</span><br><span class="line">primary key (id)</span><br><span class="line">)engine&#x3D;InnoDB;</span><br><span class="line">#显示表结构</span><br><span class="line">describe </span><br><span class="line">#删除表</span><br><span class="line">drop table test；</span><br><span class="line">#重命名表</span><br><span class="line">alter table test_old rename test_new;</span><br><span class="line">#添加列</span><br><span class="line">alter table test add cn int(4) not null;</span><br><span class="line">#修改列</span><br><span class="line">alter table test change id id1 varchar(10) not null;</span><br><span class="line">#删除列 </span><br><span class="line">alter table test drop cn;</span><br><span class="line">#创建索引</span><br><span class="line">alter table test add index (cn,id);</span><br><span class="line">#删除索引</span><br><span class="line">alter table test drop index cn</span><br><span class="line">#插入数据</span><br><span class="line">insert into test (id,email,ip,state) values(2,&#39;qq@qq.com&#39;,&#39;127.0.0.1&#39;,&#39;0&#39;);</span><br><span class="line">#删除数据 </span><br><span class="line">delete from test where id &#x3D; 1;</span><br><span class="line">#修改数据</span><br><span class="line">update test set id&#x3D;&#39;1&#39;,email&#x3D;&#39;q@qq.com&#39; where id&#x3D;1;</span><br><span class="line">#查数据</span><br><span class="line">select * from test;  #取所有数据</span><br><span class="line">select * from test limit 0,2;  #取前两条数据 </span><br><span class="line">select * from test email like &#39;%qq%&#39; #查含有qq字符 _表示一个 %表示多个</span><br><span class="line">select * from test order by id asc;#降序desc</span><br><span class="line">select * from test id not in(&#39;2&#39;,&#39;3&#39;);#id不含2,3或者去掉not表示含有</span><br><span class="line">select * from test timer between 1 and 10;#数据在1,10之间</span><br><span class="line"></span><br><span class="line">#---------------------------表连接知识------------------------------</span><br><span class="line">#等值连接又叫内链接 inner join 只返回两个表中连接字段相等的行</span><br><span class="line">select * from A inner join B on A.id &#x3D; B.id; #写法1</span><br><span class="line">select * from A,B where A.id &#x3D; B.id; #写法2</span><br><span class="line">select a.id,a.title from A a inner join B b on a.id&#x3D;b.id and a.id&#x3D;1;#写法3 表的临时名称</span><br><span class="line">select a.id as ID,a.title as 标题 from A inner join B on A.id&#x3D;B.id;#添加as字句</span><br><span class="line"></span><br><span class="line">#左连接又叫外连接 left join 返回左表中所有记录和右表中连接字段相等的记录</span><br><span class="line">select * from A left join B on A.id &#x3D; B.id;</span><br><span class="line"></span><br><span class="line">select * from A left join (B,C,D) on (B.i1&#x3D;A.i1 and C.i2&#x3D;A.i2 and D.i3 &#x3D; A.i3);#复杂连接</span><br><span class="line"></span><br><span class="line">#右连接又叫外连接 right join 返回右表中所有记录和左表中连接字段相等的记录</span><br><span class="line">select * from A right join B on A.id &#x3D; B.id;</span><br><span class="line"></span><br><span class="line">#完整外部链接 full join 返回左右表中所有数据</span><br><span class="line">select * from A full join B on A.id &#x3D; B.id;</span><br><span class="line"></span><br><span class="line">#交叉连接 没有where字句 返回卡迪尔积</span><br><span class="line">select * from A cross join B;</span><br><span class="line">-------------------------表连接结束------------------------------------------------------------</span><br><span class="line">-----------------索引创建------------------------------------------------</span><br><span class="line">show index from A #查看索引</span><br><span class="line">alter table A add primary key(id) #主键索引</span><br><span class="line">alter table A add unique(name) #唯一索引</span><br><span class="line">alter table A add index name(name) #普通索引</span><br><span class="line">alter table A add fulltext(name) #全文索引</span><br><span class="line">alter table A add index name(id,name) #多列索引</span><br><span class="line"></span><br><span class="line">#常用函数</span><br><span class="line">abs(-1)#绝对值</span><br><span class="line">pi()#pi值</span><br><span class="line">sqrt(2)#平方根</span><br><span class="line">mod(-5,3)#取余-2</span><br><span class="line">ceil(10.6)#进位+1 结果11 ceil(10.0)结果10</span><br><span class="line">floor(10.6)#取整 10</span><br><span class="line">round(2.5)#四舍五入到整数 结果3</span><br><span class="line">round(2.5,2)#保留两位小数 结果2.50</span><br><span class="line">truncate(2.5234,3)#取小数后3位不四舍五入 2.523</span><br><span class="line">sign(-2);#符号函数 返回-1 0还是0 正数返回1</span><br><span class="line">pow(2,3),exp(2);#2的3次幂 或e的2次幂</span><br><span class="line">log(2),log10(2);#求对数</span><br><span class="line">radians(180),degrees(0.618);#角度弧度转换</span><br><span class="line">sin(0.5),asin(0.5)#正弦和反正弦 类似cos acos tan atan</span><br><span class="line">length(&#39;hi&#39;)#计算字符长度</span><br><span class="line">concat(&#39;1&#39;,1,&#39;hi&#39;)#合并字符串</span><br><span class="line">insert(&#39;12345&#39;,1,0,&#39;7890&#39;);#从开头第1个字符开始到0个结束，替换成后边字符串，0表示在最前边插入</span><br><span class="line">ucase(&#39;a&#39;),lcase(&#39;A&#39;)#转成大写和小写</span><br><span class="line">left(&#39;abcd&#39;,2),right(&#39;abcd&#39;,2);#返回前两个字符和后两个字符</span><br><span class="line">ltrim(&#39;  0  &#39;),rtrim(&#39; 0 &#39;),trim(&#39;  0  &#39;)#删除空格</span><br><span class="line">replace(&#39;1234567890&#39;,&#39;345678&#39;,&#39;0&#39;);#替换输出12090</span><br><span class="line">substring(&#39;12345&#39;,1,2)#取字符 输出12 1是位置 2是长度</span><br><span class="line">instr(&#39;1234&#39;,&#39;234&#39;);#取得234位置是2</span><br><span class="line">reverse(&#39;1234&#39;);#反序输出4321</span><br><span class="line">current()#返回日期</span><br><span class="line">curtime()#返回时间</span><br><span class="line">now()#返回日期时间</span><br><span class="line">month(now())#当前月份 monthname 英文月份</span><br><span class="line">dayname(now())#星期英文 dayofweek()1是星期天 weekday()1是星期二</span><br><span class="line">week(now())#本年第多少周</span><br><span class="line">dayofyear(now()),dayofmonth(now())#今天是本年第多少天 今天是本月第多少天</span><br><span class="line">year(now()),month(now()),day(now()),hour(now()),minute(now()),second(now())#返回年月日 时分秒</span><br><span class="line">time_to_sec(now()),sec_to_time(3600*8);#转换时间为秒和还原</span><br><span class="line">version()#mysql版本</span><br><span class="line">database()#当前连接的数据库 没有为null</span><br><span class="line">user()#获取用户名</span><br><span class="line">md5(&#39;a&#39;)#加密字符串</span><br><span class="line">ascii(&#39;a&#39;)#ascii值97</span><br><span class="line">bin(100),hex(100),oct(100)#返回二进制 十六进制 八进制</span><br><span class="line">conv(10001,2,8);#各种进制相互转换</span><br><span class="line">rand()#生成0到1之间随机数</span><br><span class="line"></span><br><span class="line">sleep(0.02)#暂停秒数</span><br><span class="line">---------------------------------</span><br></pre></td></tr></table></figure>
 
 
 
@@ -350,201 +352,36 @@
 <p>结果类似：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">Dec 29 2008 11:45 PM</span><br><span class="line">12-29-2008</span><br><span class="line">29 Dec 08</span><br><span class="line">29 Dec 2008 16:25:46.635</span><br><span class="line">--------------------</span><br><span class="line">数据库优化</span><br><span class="line">1.开启缓存，尽量使用php函数而不是mysql</span><br><span class="line">2. explain select 语句可以知道性能</span><br><span class="line">3.一行数据使用 limit 1；</span><br><span class="line">4.为搜索字段重建索引 比如关键字 标签</span><br><span class="line">5.表连接join保证字段类型相同并且有其索引</span><br><span class="line">6.随机查询使用php $r &#x3D; mysql_query(&quot;SELECT count(*) FROM user&quot;);</span><br><span class="line">                    $d &#x3D; mysql_fetch_row($r);</span><br><span class="line">                    $rand &#x3D; mt_rand(0,$d[0] - 1);</span><br><span class="line">                    $r &#x3D; mysql_query(&quot;SELECT username FROM user LIMIT $rand, 1&quot;);</span><br><span class="line">7.避免使用select * 应该使用具体字段</span><br><span class="line">8.每张表都是用id主键，并且是unsigned int</span><br><span class="line">9.对于取值有限而固定使用enum类型，如性别 国家 名族 部门 状态</span><br><span class="line">10.尽可能使用not null ip存储使用int(4),使用ip 转化函数ip2long()相互long2ip()</span><br><span class="line">11.delete和insert语句会锁表，所以可以采用分拆语句操作</span><br><span class="line">while(1)&#123;操作语句;usleep(2000);&#125;</span><br><span class="line">12.选择正确的存储引擎；MyISAM适合大量查询 写操作多用InnoDB支持事务</span><br><span class="line"></span><br><span class="line">#存储过程</span><br><span class="line">#存储程序</span><br><span class="line">delimiter #定义存储程序</span><br><span class="line">create procedure getversion(out params varchar(20)) #params是传出参数 in传进 out传出 inout传回</span><br><span class="line">begin</span><br><span class="line">select version() into params; #版本信息赋值params</span><br><span class="line">end</span><br><span class="line">call getversion(@a); #调用存储过程</span><br><span class="line">select @a;</span><br><span class="line">delimiter #定义存储函数</span><br><span class="line">create function display(w varchar(20)) returns varchar(20)</span><br><span class="line">begin</span><br><span class="line">return concat(&#39;hello&#39;,w);</span><br><span class="line">end</span><br><span class="line">select display(&#39;world&#39;);</span><br><span class="line"></span><br><span class="line">drop procedure if exists spName; #删除一个存储过程</span><br><span class="line">alter function spName [];#修改一个存储过程</span><br><span class="line">show create procedure spName;#显示存储过程信息</span><br><span class="line">declare varName type default value;#声明局部变量</span><br><span class="line">#if语句</span><br><span class="line">if 条件 then 语句</span><br><span class="line">elseif 条件 then 语句</span><br><span class="line">else 语句</span><br><span class="line">end if</span><br><span class="line">#case语句</span><br><span class="line">case 条件</span><br><span class="line">when 条件 then 语句</span><br><span class="line">when 条件 then 语句</span><br><span class="line">else 语句</span><br><span class="line">end case</span><br><span class="line">#loop语句</span><br><span class="line">fn:loop</span><br><span class="line">语句</span><br><span class="line">end loop fn;</span><br><span class="line">leave fn #退出循环</span><br><span class="line">#while语句</span><br><span class="line">fn：while 条件 do</span><br><span class="line">语句</span><br><span class="line">end while fn</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#mysql使用帮助资料</span><br><span class="line">? contents; #列出帮助类型</span><br><span class="line">? data types;#列出数据类型</span><br><span class="line">？ int;#列出具体类型</span><br><span class="line">? show;#show语句</span><br><span class="line">? create table;#</span><br><span class="line">#常见表的比较</span><br><span class="line">                    Myisam   BDB    Memory    InnoDB    Archive</span><br><span class="line">存储限制        no           no      yes                64T        no</span><br><span class="line">事物安全                      支持                         支持                         </span><br><span class="line">锁机制         表锁           页锁    表锁             行锁          行锁</span><br><span class="line">全文索引       支持</span><br><span class="line">外键支持                                                        支持</span><br><span class="line">myisam  frm存储表定义 MYD存储数据 MYI存储索引</span><br><span class="line">InnoDB 用于事务处理</span><br><span class="line">char 和 varchar保存和索引都不相同</span><br><span class="line">浮点数float(10,2) 定点数decimal(10,2)</span><br><span class="line">长度一定下，浮点数表示更大数据范围，缺点是引起精度丢失，货币等使用定点数存储</span><br><span class="line">        索引适合于where字句或者连接字句列</span><br><span class="line">        对于唯一值使用唯一索引</span><br><span class="line"></span><br><span class="line">添加新用户 grant select,insert,update,delete on *.* to Yoby@localhost identified by &#39;mysql&#39;; </span><br><span class="line">#           *.* 数据库名.表名，限制登录某一个数据库 test.*                           localhost是本地主机 网络可以使用 &#39;%&#39;代替所有主机        &#39;mysql&#39;是密码 Yoby是用户名  所有权限可以用 all代替</span><br><span class="line">查看用户权限 show grants for &#39;root&#39;@&#39;localhost&#39;;</span><br><span class="line">移除权限  revoke all on *.* from root@localhost;</span><br><span class="line">group by id 分组</span><br><span class="line">having 限制字句</span><br><span class="line">select1 union select2 联合查询有重复去掉保留一行</span><br><span class="line">select2 union all select2 所有行合并到结果集中去</span><br><span class="line">--------------------------------------------------------------------</span><br><span class="line">修改MYSQL参数</span><br><span class="line">show variables like &#39;%Func%&#39;;</span><br><span class="line">set global log_bin_trust_function_creators&#x3D;1;</span><br><span class="line">show variables like &#39;%Func%&#39;;</span><br><span class="line">实用的insert select语句：</span><br><span class="line">INSERT INTO KM_MEMBER_RELA_FULLCUT (</span><br><span class="line">	SELECT</span><br><span class="line">		a.MB_ID,</span><br><span class="line">		b.MPFC_ID,</span><br><span class="line">		1</span><br><span class="line">	FROM</span><br><span class="line">		KM_MEMBER a,</span><br><span class="line">		KM_MEMBER_PREF_FULLCUT b</span><br><span class="line">	WHERE</span><br><span class="line">		b.MPFC_STATUS &#x3D; 0</span><br><span class="line">	AND NOT EXISTS (</span><br><span class="line">		SELECT</span><br><span class="line">			1</span><br><span class="line">		FROM</span><br><span class="line">			KM_MEMBER_RELA_FULLCUT</span><br><span class="line">		WHERE</span><br><span class="line">			MB_ID &#x3D; a.MB_ID</span><br><span class="line">		AND MPFC_ID &#x3D; b.MPFC_ID</span><br><span class="line">	)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/MySql/" rel="tag"># MySql</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="人间客">
-      <meta itemprop="description" content="终身学习，终身成长">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="人间客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/12/%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">杀毒软件学习笔记（一）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-05-12 15:54:42 / 修改时间：16:28:18" itemprop="dateCreated datePublished" datetime="2020-05-12T15:54:42+08:00">2020-05-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="杀毒软件学习笔记"><a href="#杀毒软件学习笔记" class="headerlink" title="杀毒软件学习笔记"></a>杀毒软件学习笔记</h1><h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><ol>
-<li>杀毒（查杀病毒）</li>
-<li>防毒（阻止病毒执行）</li>
-<li>升级（更新模块或病毒库）</li>
-<li>自我保护（防止被病毒反杀）</li>
-<li>黑/白名单<ul>
-<li>边缘软件，不属于木马/病毒，不会对系统造车危害但会对使用者的感受有不好的影响</li>
-<li>比如弹广告的、P2P做种的后台程序或组件</li>
-</ul>
-</li>
-<li>其他功能（照顾用户感受）<ol>
-<li>设置<ul>
-<li>让用户根据自己的习惯去设置杀毒软件</li>
-</ul>
-</li>
-<li>界面<ul>
-<li>功能相同的情况下，用户偏好更好的UI</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/12/%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/12/%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="杀毒软件学习笔记（一）">
+      <i class="fa fa-chevron-left"></i> 杀毒软件学习笔记（一）
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="人间客">
-      <meta itemprop="description" content="终身学习，终身成长">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="人间客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" class="post-title-link" itemprop="url">武汉旅行信息收集申请表分析报告</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-06 11:30:39" itemprop="dateCreated datePublished" datetime="2020-05-06T11:30:39+08:00">2020-05-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-12 15:48:02" itemprop="dateModified" datetime="2020-05-12T15:48:02+08:00">2020-05-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%97%85%E6%AF%92-%E6%9C%A8%E9%A9%AC/" itemprop="url" rel="index"><span itemprop="name">病毒/木马</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="样本分析"><a href="#样本分析" class="headerlink" title="样本分析"></a>样本分析</h1><h2 id="分析概况"><a href="#分析概况" class="headerlink" title="分析概况"></a>分析概况</h2><p>本次分析的样本为APT组织摩诃草（APT-C-09，又称HangOver、VICEROY TIGER、The Dropping Elephant、Patchwork）借新冠病毒事件向我国投递的包含恶意宏代码的xlsm文档。该文档的宏代码执行后，会下载一个sct脚本，脚本借由scrobj.dll执行后会下载最终的恶意程序msupdate.exe。msupdate.exe会窃取主机数据上传，并且会下载其他的恶意文件到主机执行。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/06/%E6%AD%A6%E6%B1%89%E6%97%85%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E7%94%B3%E8%AF%B7%E8%A1%A8%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -595,6 +432,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-DATE-FORMAT-函数"><span class="nav-number">1.</span> <span class="nav-text">MySQL DATE_FORMAT() 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义和用法"><span class="nav-number">1.1.</span> <span class="nav-text">定义和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">1.2.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
